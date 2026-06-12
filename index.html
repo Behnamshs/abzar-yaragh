@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ابزار پلاس</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/dist/font-face.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap');
+    * {
+      font-family: 'Vazirmatn', sans-serif;
+    }
+    body {
+      background-color: #171717;
+      scroll-behavior: smooth;
+    }
+
+    .bg-dark-header { background-color: #0f0f0f; }
+    .text-orange-primary { color: #f26522; }
+    .bg-orange-primary { background-color: #f26522; }
+
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .product-scroller {
+      scroll-behavior: smooth;
+      cursor: grab;
+    }
+
+    .product-scroller:active {
+      cursor: grabbing;
+    }
+
+    .category-card {
+      transition: all 0.25s ease;
+    }
+
+    .category-card:hover {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .hero-slide {
+      opacity: 0;
+      transition: opacity 700ms ease-in-out;
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .hero-nav-edge {
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+    }
+
+    .hero-nav-edge:hover {
+      background: rgba(242, 101, 34, 0.92);
+    }
+  </style>
+</head>
+<body class="pb-20 lg:pb-0 bg-[#171717]">
+
+  <div class="bg-[#f8f9fa]">
+    <!-- HEADER / MAIN WRAPPER -->
+  <div class="bg-[#f8f9fa]">
+    <!-- TOP BAR -->
+    <div class="bg-[#111111] text-white">
+      <div class="container mx-auto px-4 h-11 flex items-center justify-between text-sm">
+        <div class="flex items-center gap-4">
+          <span>ارسال سریع به سراسر کشور</span>
+        </div>
+        <div class="hidden md:flex items-center gap-5 text-white/80">
+          <a href="#" class="hover:text-white transition">پیگیری سفارش</a>
+          <a href="#" class="hover:text-white transition">پشتیبانی</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+      <div class="container mx-auto px-4">
+        <div class="h-20 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <button class="lg:hidden w-11 h-11 rounded-xl bg-[#f3f4f6] flex items-center justify-center">
+              <i class="fa-solid fa-bars text-[#111]"></i>
+            </button>
+
+            <a href="#" class="text-2xl font-black text-[#111]">
+              ابزار<span class="text-orange-500">پلاس</span>
+            </a>
+          </div>
+
+          <div class="hidden lg:flex flex-1 max-w-2xl">
+            <div class="w-full relative">
+              <input
+                type="text"
+                placeholder="جستجوی ابزار، برند و دسته‌بندی..."
+                class="w-full h-12 rounded-2xl border border-gray-200 bg-[#f8f9fa] pr-12 pl-4 outline-none focus:border-orange-400"
+              />
+              <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="#" class="hidden md:flex h-11 px-4 rounded-xl bg-[#f3f4f6] items-center gap-2 text-sm font-bold">
+              <i class="fa-regular fa-user"></i>
+              حساب کاربری
+            </a>
+            <a href="#" class="relative w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="absolute -top-2 -left-2 min-w-[22px] h-[22px] px-1 rounded-full bg-[#111] text-[11px] flex items-center justify-center">2</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="hidden lg:flex items-center gap-8 h-14 text-sm font-medium text-[#444]">
+          <a href="#" class="hover:text-orange-500 transition">صفحه اصلی</a>
+          <a href="#" class="hover:text-orange-500 transition">ابزار برقی</a>
+          <a href="#" class="hover:text-orange-500 transition">ابزار دستی</a>
+          <a href="#" class="hover:text-orange-500 transition">جعبه ابزار</a>
+          <a href="#" class="hover:text-orange-500 transition">کمپرسور و جوشکاری</a>
+          <a href="#" class="hover:text-orange-500 transition">پیشنهاد ویژه</a>
+          <a href="#" class="hover:text-orange-500 transition">تماس با ما</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="container mx-auto px-4 my-6">
+      <div class="relative rounded-[2.5rem] overflow-hidden bg-black h-[300px] sm:h-[360px] lg:h-[470px] shadow-xl">
+
+        <div class="hero-slide active">
+          <img src="img/B1.png" alt="بنر ابزار 1" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/25 to-transparent"></div>
+
+          <div class="absolute inset-y-0 right-0 flex items-center z-10">
+            <div class="px-6 sm:px-10 lg:px-14 max-w-xl text-white">
+              <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                قدرت واقعی در دستان شما
+              </h2>
+              <p class="mt-3 text-sm sm:text-base lg:text-lg text-white/90 leading-7">
+                مجموعه‌ای کامل از ابزارهای حرفه‌ای برای پروژه‌های خانگی و صنعتی.
+              </p>
+              <button class="mt-6 rounded-2xl bg-orange-primary hover:opacity-90 px-6 py-3 font-bold text-white transition">
+                مشاهده محصولات
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-slide">
+          <img src="img/B2.png" alt="بنر ابزار 2" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/25 to-transparent"></div>
+
+          <div class="absolute inset-y-0 right-0 flex items-center z-10">
+            <div class="px-6 sm:px-10 lg:px-14 max-w-xl text-white">
+              <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                تخفیف ویژه ابزارهای برقی
+              </h2>
+              <p class="mt-3 text-sm sm:text-base lg:text-lg text-white/90 leading-7">
+                بهترین برندها با قیمت رقابتی و ضمانت اصالت کالا.
+              </p>
+              <button class="mt-6 rounded-2xl bg-white text-slate-900 hover:bg-slate-100 px-6 py-3 font-bold transition">
+                خرید ویژه
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-slide">
+          <img src="img/B3.png" alt="بنر ابزار 3" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/25 to-transparent"></div>
+
+          <div class="absolute inset-y-0 right-0 flex items-center z-10">
+            <div class="px-6 sm:px-10 lg:px-14 max-w-xl text-white">
+              <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                ارسال سریع به سراسر کشور
+              </h2>
+              <p class="mt-3 text-sm sm:text-base lg:text-lg text-white/90 leading-7">
+                سفارش خود را آنلاین ثبت کنید و سریع تحویل بگیرید.
+              </p>
+              <button class="mt-6 rounded-2xl bg-amber-400 text-slate-900 hover:bg-amber-300 px-6 py-3 font-bold transition">
+                شروع خرید
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button id="hero-prev" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 h-20 sm:h-28 lg:h-28 w-8 sm:w-14 lg:w-12 rounded-r-2xl hero-nav-edge border border-white/20 text-white flex items-center justify-center">
+          <i class="fa fa-chevron-left text-lg"></i>
+        </button>
+
+        <button id="hero-next" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 h-20 sm:h-28 lg:h-28 w-8 sm:w-14 lg:w-12 rounded-l-2xl hero-nav-edge border border-white/20 text-white flex items-center justify-center">
+          <i class="fa fa-chevron-right text-lg"></i>
+        </button>
+
+        <div id="hero-dots" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-20"></div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="container mx-auto px-4 py-8 overflow-x-auto hide-scrollbar">
+      <div class="flex lg:grid lg:grid-cols-8 gap-4 min-w-max lg:min-w-full">
+
+        <a href="#" class="category-card bg-white p-4 rounded-2xl w-32 lg:w-auto flex flex-col items-center gap-3 shadow-sm cursor-pointer">
+          <i class="fa fa-screwdriver-wrench text-2xl text-orange-primary"></i>
+          <span class="text-[11px] font-bold text-center">دریل و پیچ‌گوشتی</span>
+        </a>
+
+        <a href="#" class="category-card bg-white p-4 rounded-2xl w-32 lg:w-auto flex flex-col items-center gap-3 shadow-sm cursor-pointer">
+          <i class="fa fa-bolt text-2xl text-orange-primary"></i>
+          <span class="text-[11px] font-bold text-center">ابزار برقی</span>
+        </a>
+
+        <a href="#" class="category-card bg-white p-4 rounded-2xl w-32 lg:w-auto flex flex-col items-center gap-3 shadow-sm cursor-pointer">
+          <i class="fa fa-hammer text-2xl text-orange-primary"></i>
+          <span class="text-[11px] font-bold text-center">ابزار دستی</span>
+        </a>
+
+        <a href="#" class="category-card bg-white p-4 rounded-2xl w-32 lg:w-auto flex flex-col items-center gap-3 shadow-sm cursor-pointer">
+          <i class="fa fa-ruler-combined text-2xl text-orange-primary"></i>
+          <span class="text-[11px] font-bold text-center">ابزار اندازه‌گیری</span>
+        </a>
+
+        <a href="#" class="category-card bg-white p-4 rounded-2xl w-32 lg:w-auto flex flex-col items-center gap-3 shadow-sm cursor-pointer">
+          <i class="fa fa-helmet-safety text-2xl text-orange-primary"></i>
+          <span class="text-[11px] font-bold text-center">تجهیزات ایمنی</span>
+        </a>
+
+        <a href="#" class="category-card bg-white p-4 rounded-2xl w-32 lg:w-auto flex flex-col items-center gap-3 shadow-sm cursor-pointer">
+          <i class="fa fa-briefcase text-2xl text-orange-primary"></i>
+          <span class="text-[11px] font-bold text-center">جعبه ابزار</span>
+        </a>
+
+        <a href="#" class="category-card bg-white p-4 rounded-2xl w-32 lg:w-auto flex flex-col items-center gap-3 shadow-sm cursor-pointer">
+          <i class="fa fa-toolbox text-2xl text-orange-primary"></i>
+          <span class="text-[11px] font-bold text-center">سایر محصولات</span>
+        </a>
+
+        <a href="#" class="category-card bg-gray-100 p-4 rounded-2xl w-32 lg:w-auto flex flex-col items-center justify-center gap-2 border-2 border-dashed border-gray-300 cursor-pointer">
+          <i class="fa fa-chevron-left text-gray-500"></i>
+          <span class="text-[11px] font-bold text-gray-500">مشاهده همه</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- MAIN -->
+    <section class="container mx-auto px-4 py-8 flex flex-col lg:flex-row-reverse gap-6">
+
+      <div class="w-full lg:w-1/4 flex flex-col gap-4">
+        <div class="bg-white p-6 rounded-3xl flex items-center gap-4 border border-gray-100 flex-1 shadow-sm">
+          <i class="fa fa-truck-fast text-2xl text-orange-primary"></i>
+          <div>
+            <h4 class="font-black text-sm">ارسال سریع</h4>
+            <p class="text-[10px] text-gray-400">سراسر کشور</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl flex items-center gap-4 border border-gray-100 flex-1 shadow-sm">
+          <i class="fa fa-shield-halved text-2xl text-orange-primary"></i>
+          <div>
+            <h4 class="font-black text-sm">ضمانت اصالت</h4>
+            <p class="text-[10px] text-gray-400">تضمین ۱۰۰٪ کالا</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl flex items-center gap-4 border border-gray-100 flex-1 shadow-sm">
+          <i class="fa fa-headset text-2xl text-orange-primary"></i>
+          <div>
+            <h4 class="font-black text-sm">پشتیبانی تخصصی</h4>
+            <p class="text-[10px] text-gray-400">مشاوره رایگان خرید</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl flex items-center gap-4 border border-gray-100 flex-1 shadow-sm">
+          <i class="fa fa-rotate-left text-2xl text-orange-primary"></i>
+          <div>
+            <h4 class="font-black text-sm">۷ روز ضمانت بازگشت</h4>
+            <p class="text-[10px] text-gray-400">بازگشت بی‌قید و شرط</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-3/4">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2 border-r-4 border-orange-primary pr-3">
+            <h3 class="text-xl font-black text-gray-800">پرفروش‌ترین محصولات</h3>
+          </div>
+
+          <div class="hidden md:flex items-center gap-2">
+            <button id="scroll-right" class="w-10 h-10 rounded-full bg-white shadow border text-gray-700 hover:bg-gray-50">
+              <i class="fa fa-chevron-right"></i>
+            </button>
+            <button id="scroll-left" class="w-10 h-10 rounded-full bg-white shadow border text-gray-700 hover:bg-gray-50">
+              <i class="fa fa-chevron-left"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="product-scroller" class="product-scroller flex flex-nowrap gap-6 overflow-x-auto pb-6 hide-scrollbar px-2 select-none">
+
+          <div class="bg-white p-5 rounded-[2.5rem] shadow-sm min-w-[280px] lg:min-w-[300px] border border-transparent hover:border-orange-primary transition-all relative flex-shrink-0">
+            <button class="absolute top-6 right-6 text-gray-300 hover:text-red-500 z-10">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </button>
+            <div class="relative mb-4 h-48 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-100">
+              <img src="img/3.jpg" class="max-h-full w-full object-cover" alt="product" />
+              <span class="absolute top-0 left-0 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg">15%</span>
+            </div>
+            <h4 class="text-sm font-bold text-gray-700 mb-4 h-10 overflow-hidden text-right leading-relaxed">دریل شارژی چکشی حرفه‌ای</h4>
+            <div class="flex justify-between items-center mb-5">
+              <div class="flex flex-col items-start">
+                <span class="text-xs text-gray-400 line-through">7,200,000</span>
+                <span class="text-lg font-black text-gray-800">6,120,000 <small class="text-[10px] font-normal">تومان</small></span>
+              </div>
+            </div>
+            <button class="w-full bg-orange-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+              <i class="fa fa-cart-plus"></i> افزودن به سبد خرید
+            </button>
+          </div>
+
+          <div class="bg-white p-5 rounded-[2.5rem] shadow-sm min-w-[280px] lg:min-w-[300px] border border-transparent hover:border-orange-primary relative transition-all flex-shrink-0">
+            <button class="absolute top-6 right-6 text-gray-300 hover:text-red-500 z-10">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </button>
+            <div class="relative mb-4 h-48 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-100">
+              <img src="img/4.jpg" class="max-h-full w-full object-cover" alt="product" />
+              <span class="absolute top-0 left-0 bg-green-600 text-white text-[10px] font-bold px-2 py-1 rounded-lg">جدید</span>
+            </div>
+            <h4 class="text-sm font-bold text-gray-700 mb-4 h-10 overflow-hidden text-right">مینی فرز صنعتی</h4>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-lg font-black text-gray-800">4,850,000 <small class="text-[10px]">تومان</small></span>
+            </div>
+            <button class="w-full bg-orange-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+              <i class="fa fa-cart-plus"></i> افزودن به سبد خرید
+            </button>
+          </div>
+
+          <div class="bg-white p-5 rounded-[2.5rem] shadow-sm min-w-[280px] lg:min-w-[300px] border border-transparent hover:border-orange-primary relative transition-all flex-shrink-0">
+            <button class="absolute top-6 right-6 text-gray-300 hover:text-red-500 z-10">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </button>
+            <div class="relative mb-4 h-48 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-100">
+              <img src="img/1.avif" class="max-h-full w-full object-cover" alt="product" />
+            </div>
+            <h4 class="text-sm font-bold text-gray-700 mb-4 h-10 overflow-hidden text-right">مجموعه ابزار کامل کارگاهی</h4>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-lg font-black text-gray-800">3,980,000 <small class="text-[10px]">تومان</small></span>
+            </div>
+            <button class="w-full bg-orange-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+              <i class="fa fa-cart-plus"></i> افزودن به سبد خرید
+            </button>
+          </div>
+
+          <div class="bg-white p-5 rounded-[2.5rem] shadow-sm min-w-[280px] lg:min-w-[300px] border border-transparent hover:border-orange-primary relative transition-all flex-shrink-0">
+            <button class="absolute top-6 right-6 text-gray-300 hover:text-red-500 z-10">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </button>
+            <div class="relative mb-4 h-48 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-100">
+              <img src="img/7.jpg" class="max-h-full w-full object-cover" alt="product" />
+            </div>
+            <h4 class="text-sm font-bold text-gray-700 mb-4 h-10 overflow-hidden text-right">مجموعه ابزار کامل کارگاهی</h4>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-lg font-black text-gray-800">3,980,000 <small class="text-[10px]">تومان</small></span>
+            </div>
+            <button class="w-full bg-orange-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+              <i class="fa fa-cart-plus"></i> افزودن به سبد خرید
+            </button>
+          </div>
+
+          <div class="bg-white p-5 rounded-[2.5rem] shadow-sm min-w-[280px] lg:min-w-[300px] border border-transparent hover:border-orange-primary relative transition-all flex-shrink-0">
+            <button class="absolute top-6 right-6 text-gray-300 hover:text-red-500 z-10">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </button>
+            <div class="relative mb-4 h-48 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-100">
+              <img src="img/2.avif" class="max-h-full w-full object-cover" alt="product" />
+            </div>
+            <h4 class="text-sm font-bold text-gray-700 mb-4 h-10 overflow-hidden text-right">مجموعه ابزار کامل کارگاهی</h4>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-lg font-black text-gray-800">3,980,000 <small class="text-[10px]">تومان</small></span>
+            </div>
+            <button class="w-full bg-orange-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+              <i class="fa fa-cart-plus"></i> افزودن به سبد خرید
+            </button>
+          </div>
+
+          <div class="bg-white p-5 rounded-[2.5rem] shadow-sm min-w-[280px] lg:min-w-[300px] border border-transparent hover:border-orange-primary relative transition-all flex-shrink-0">
+            <button class="absolute top-6 right-6 text-gray-300 hover:text-red-500 z-10">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </button>
+            <div class="relative mb-4 h-48 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-100">
+              <img src="img/5.avif" class="max-h-full w-full object-cover" alt="product" />
+            </div>
+            <h4 class="text-sm font-bold text-gray-700 mb-4 h-10 overflow-hidden text-right">مجموعه ابزار کامل کارگاهی</h4>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-lg font-black text-gray-800">3,980,000 <small class="text-[10px]">تومان</small></span>
+            </div>
+            <button class="w-full bg-orange-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+              <i class="fa fa-cart-plus"></i> افزودن به سبد خرید
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- MOBILE NAV -->
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-[#111111] border-t border-white/10 py-3 px-6 flex justify-between items-center z-50 shadow-[0_-5px_15px_rgba(0,0,0,0.25)]">
+      <div class="flex flex-col items-center text-orange-primary">
+        <i class="fa fa-house text-xl"></i>
+        <span class="text-[10px] mt-1">خانه</span>
+      </div>
+      <div class="flex flex-col items-center text-gray-400">
+        <i class="fa fa-table-cells-large text-xl"></i>
+        <span class="text-[10px] mt-1">دسته‌ها</span>
+      </div>
+      <div class="flex flex-col items-center text-gray-400">
+        <i class="fa-regular fa-heart text-xl"></i>
+        <span class="text-[10px] mt-1">علاقه‌ها</span>
+      </div>
+      <div class="flex flex-col items-center text-gray-400">
+        <i class="fa-regular fa-user text-xl"></i>
+        <span class="text-[10px] mt-1">پروفایل</span>
+      </div>
+    </nav>
+
+    <!-- BRANDS SECTION -->
+    <section class="container mx-auto px-4 pt-2 pb-10" dir="rtl">
+      <div class="bg-white rounded-[2.5rem] p-6 shadow-sm border border-gray-50">
+        <div class="overflow-x-auto no-scrollbar">
+          <div class="flex items-center flex-nowrap justify-between min-w-max gap-14">
+            <div class="flex items-center flex-nowrap gap-8 lg:gap-14">
+              <img src="logo/1.png" class="h-6 lg:h-7 object-contain opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer flex-shrink-0" alt="Brand 1">
+              <img src="logo/2.png" class="h-6 lg:h-7 object-contain opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer flex-shrink-0" alt="Brand 2">
+              <img src="logo/3.png" class="h-6 lg:h-7 object-contain opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer flex-shrink-0" alt="Brand 3">
+              <img src="logo/4.png" class="h-6 lg:h-7 object-contain opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer flex-shrink-0" alt="Brand 4">
+              <img src="logo/5.png" class="h-6 lg:h-7 object-contain opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer flex-shrink-0" alt="Brand 5">
+              <img src="logo/6.png" class="h-6 lg:h-7 object-contain opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer flex-shrink-0" alt="Brand 6">
+              <img src="logo/7.png" class="h-6 lg:h-7 object-contain opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer flex-shrink-0" alt="Brand 7">
+            </div>
+
+            <div class="flex-shrink-0 ps-4">
+              <a href="#" class="flex items-center gap-2 text-slate-400 hover:text-orange-primary transition-colors duration-300 whitespace-nowrap">
+                <i class="fa fa-chevron-left text-[10px]"></i>
+                <span class="text-xs font-bold">مشاهده همه برندها</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SECTION 2 WRAPPER -->
+  <section class="bg-[#171717] text-white pt-12 pb-0" dir="rtl">
+    <div class="container mx-auto px-4">
+
+      <div class="text-center mb-10">
+        <div class="flex items-center justify-center gap-4 mb-3">
+          <span class="w-12 h-[2px] bg-orange-500/70"></span>
+          <h2 class="text-3xl lg:text-4xl font-black">پیشنهاد های ویژه</h2>
+          <span class="w-12 h-[2px] bg-orange-500/70"></span>
+        </div>
+
+        <p class="text-gray-400 text-sm lg:text-base mb-6">
+          فرصت محدود برای خرید ابزارآلات با تخفیف های استثنایی
+        </p>
+
+        <div class="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6">
+          <span class="text-xl lg:text-2xl font-bold">پایان پیشنهاد ویژه تا :</span>
+
+          <div class="flex items-center gap-3" id="countdown">
+            <div class="w-16 h-20 rounded-2xl border border-orange-500/40 bg-[#101010] flex flex-col items-center justify-center shadow-[0_0_20px_rgba(255,102,0,0.12)]">
+              <span id="seconds" class="text-3xl font-black">00</span>
+              <span class="text-sm text-gray-400">ثانیه</span>
+            </div>
+
+            <div class="w-16 h-20 rounded-2xl border border-orange-500/40 bg-[#101010] flex flex-col items-center justify-center shadow-[0_0_20px_rgba(255,102,0,0.12)]">
+              <span id="minutes" class="text-3xl font-black">00</span>
+              <span class="text-sm text-gray-400">دقیقه</span>
+            </div>
+
+            <div class="w-16 h-20 rounded-2xl border border-orange-500/40 bg-[#101010] flex flex-col items-center justify-center shadow-[0_0_20px_rgba(255,102,0,0.12)]">
+              <span id="hours" class="text-3xl font-black">00</span>
+              <span class="text-sm text-gray-400">ساعت</span>
+            </div>
+
+            <div class="w-16 h-20 rounded-2xl border border-orange-500/40 bg-[#101010] flex flex-col items-center justify-center shadow-[0_0_20px_rgba(255,102,0,0.12)]">
+              <span id="days" class="text-3xl font-black">00</span>
+              <span class="text-sm text-gray-400">روز</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <button id="specialPrev" class="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/15 bg-[#222]/95 hover:bg-orange-500 transition items-center justify-center shadow-lg">
+          <i class="fa fa-chevron-right text-sm"></i>
+        </button>
+
+        <button id="specialNext" class="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/15 bg-[#222]/95 hover:bg-orange-500 transition items-center justify-center shadow-lg">
+          <i class="fa fa-chevron-left text-sm"></i>
+        </button>
+
+        <div class="px-0 lg:px-16">
+          <div id="specialSlider" class="overflow-x-auto no-scrollbar scroll-smooth pb-3">
+            <div class="flex flex-nowrap gap-5 min-w-max">
+
+              <div class="w-[270px] bg-white rounded-[1.75rem] p-4 text-slate-900 shadow-lg flex-shrink-0">
+                <div class="relative mb-4">
+                  <span class="absolute top-0 right-0 bg-red-600 text-white text-sm font-bold rounded-full w-16 h-16 flex flex-col items-center justify-center leading-tight z-10">
+                    <span>%45</span>
+                    <span class="text-[11px]">تخفیف</span>
+                  </span>
+                  <img src="img/5.avif" class="w-full h-56 object-contain" alt="Product 1">
+                </div>
+
+                <h3 class="text-base font-bold mb-4 text-center">
+                  دریل شارژی دیوالت مدل DC791
+                </h3>
+
+                <div class="text-center mb-4">
+                  <div class="text-gray-400 line-through text-xl">7,800,000</div>
+                  <div class="text-orange-500 font-black text-3xl">
+                    4,290,000 <span class="text-base">تومان</span>
+                  </div>
+                </div>
+
+                <button class="w-full h-12 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold transition flex items-center justify-center gap-2">
+                  <i class="fa fa-shopping-cart"></i>
+                  افزودن به سبد
+                </button>
+              </div>
+
+              <div class="w-[270px] bg-white rounded-[1.75rem] p-4 text-slate-900 shadow-lg flex-shrink-0">
+                <div class="relative mb-4">
+                  <span class="absolute top-0 right-0 bg-red-600 text-white text-sm font-bold rounded-full w-16 h-16 flex flex-col items-center justify-center leading-tight z-10">
+                    <span>%50</span>
+                    <span class="text-[11px]">تخفیف</span>
+                  </span>
+                  <img src="img/1.avif" class="w-full h-56 object-contain" alt="Product 2">
+                </div>
+
+                <h3 class="text-base font-bold mb-4 text-center">
+                  مینی فرز ماکیتا مدل GA5030
+                </h3>
+
+                <div class="text-center mb-4">
+                  <div class="text-gray-400 line-through text-xl">4,200,000</div>
+                  <div class="text-orange-500 font-black text-3xl">
+                    2,100,000 <span class="text-base">تومان</span>
+                  </div>
+                </div>
+
+                <button class="w-full h-12 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold transition flex items-center justify-center gap-2">
+                  <i class="fa fa-shopping-cart"></i>
+                  افزودن به سبد
+                </button>
+              </div>
+
+              <div class="w-[270px] bg-white rounded-[1.75rem] p-4 text-slate-900 shadow-lg flex-shrink-0">
+                <div class="relative mb-4">
+                  <span class="absolute top-0 right-0 bg-red-600 text-white text-sm font-bold rounded-full w-16 h-16 flex flex-col items-center justify-center leading-tight z-10">
+                    <span>%40</span>
+                    <span class="text-[11px]">تخفیف</span>
+                  </span>
+                  <img src="img/4.jpg" class="w-full h-56 object-contain" alt="Product 3">
+                </div>
+
+                <h3 class="text-base font-bold mb-4 text-center">
+                  دریل بتن کن بوش مدل GBH 2-26
+                </h3>
+
+                <div class="text-center mb-4">
+                  <div class="text-gray-400 line-through text-xl">8,800,000</div>
+                  <div class="text-orange-500 font-black text-3xl">
+                    5,300,000 <span class="text-base">تومان</span>
+                  </div>
+                </div>
+
+                <button class="w-full h-12 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold transition flex items-center justify-center gap-2">
+                  <i class="fa fa-shopping-cart"></i>
+                  افزودن به سبد
+                </button>
+              </div>
+
+              <div class="w-[270px] bg-white rounded-[1.75rem] p-4 text-slate-900 shadow-lg flex-shrink-0">
+                <div class="relative mb-4">
+                  <span class="absolute top-0 right-0 bg-red-600 text-white text-sm font-bold rounded-full w-16 h-16 flex flex-col items-center justify-center leading-tight z-10">
+                    <span>%35</span>
+                    <span class="text-[11px]">تخفیف</span>
+                  </span>
+                  <img src="img/7.jpg" class="w-full h-56 object-contain" alt="Product 4">
+                </div>
+
+                <h3 class="text-base font-bold mb-4 text-center">
+                  دستگاه جوش کنزاکس مدل KWM-245
+                </h3>
+
+                <div class="text-center mb-4">
+                  <div class="text-gray-400 line-through text-xl">6,200,000</div>
+                  <div class="text-orange-500 font-black text-3xl">
+                    3,330,000 <span class="text-base">تومان</span>
+                  </div>
+                </div>
+
+                <button class="w-full h-12 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold transition flex items-center justify-center gap-2">
+                  <i class="fa fa-shopping-cart"></i>
+                  افزودن به سبد
+                </button>
+              </div>
+
+              <div class="w-[270px] bg-white rounded-[1.75rem] p-4 text-slate-900 shadow-lg flex-shrink-0">
+                <div class="relative mb-4">
+                  <span class="absolute top-0 right-0 bg-red-600 text-white text-sm font-bold rounded-full w-16 h-16 flex flex-col items-center justify-center leading-tight z-10">
+                    <span>%30</span>
+                    <span class="text-[11px]">تخفیف</span>
+                  </span>
+                  <img src="img/6.jpg" class="w-full h-56 object-contain" alt="Product 5">
+                </div>
+
+                <h3 class="text-base font-bold mb-4 text-center">
+                  پیچ گوشتی شارژی رونیکس مدل 8612
+                </h3>
+
+                <div class="text-center mb-4">
+                  <div class="text-gray-400 line-through text-xl">3,900,000</div>
+                  <div class="text-orange-500 font-black text-3xl">
+                    2,730,000 <span class="text-base">تومان</span>
+                  </div>
+                </div>
+
+                <button class="w-full h-12 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold transition flex items-center justify-center gap-2">
+                  <i class="fa fa-shopping-cart"></i>
+                  افزودن به سبد
+                </button>
+              </div>
+
+              <div class="w-[270px] bg-white rounded-[1.75rem] p-4 text-slate-900 shadow-lg flex-shrink-0">
+                <div class="relative mb-4">
+                  <span class="absolute top-0 right-0 bg-red-600 text-white text-sm font-bold rounded-full w-16 h-16 flex flex-col items-center justify-center leading-tight z-10">
+                    <span>%25</span>
+                    <span class="text-[11px]">تخفیف</span>
+                  </span>
+                  <img src="img/3.jpg" class="w-full h-56 object-contain" alt="Product 6">
+                </div>
+
+                <h3 class="text-base font-bold mb-4 text-center">
+                  اره عمودبر آروا مدل 5401
+                </h3>
+
+                <div class="text-center mb-4">
+                  <div class="text-gray-400 line-through text-xl">5,100,000</div>
+                  <div class="text-orange-500 font-black text-3xl">
+                    3,825,000 <span class="text-base">تومان</span>
+                  </div>
+                </div>
+
+                <button class="w-full h-12 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold transition flex items-center justify-center gap-2">
+                  <i class="fa fa-shopping-cart"></i>
+                  افزودن به سبد
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-8">
+          <a href="#" class="inline-flex items-center gap-3 rounded-2xl border border-orange-500/50 bg-[#101010] px-6 h-14 text-white font-bold hover:bg-orange-500 transition">
+            <i class="fa fa-chevron-left text-sm"></i>
+            مشاهده همه پیشنهاد ها
+          </a>
+        </div>
+      </div>
+
+<section class="relative w-screen bg-white py-14 right-1/2 left-1/2 mr-[-50vw] ml-[-50vw]">
+  <div class="max-w-7xl mx-auto px-4 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- Banner 1 -->
+      <div
+        class="relative min-h-[320px] rounded-[2rem] overflow-hidden shadow-lg bg-cover bg-center"
+        style="background-image: url('img/B4.png');"
+      >
+        <div class="absolute inset-0 bg-black/65"></div>
+
+        <div class="relative z-10 h-full flex items-center p-8 lg:p-10 text-white">
+          <div class="max-w-md mr-auto">
+            <span class="inline-flex items-center rounded-full bg-orange-500/15 text-orange-400 px-4 py-2 text-sm font-bold mb-5">
+              جشنواره ویژه ابزارپلاس
+            </span>
+
+            <h3 class="text-3xl lg:text-4xl font-black leading-tight mb-4">
+              تا 50٪ تخفیف
+              <span class="text-orange-500 block mt-2">روی ابزارهای منتخب</span>
+            </h3>
+
+            <p class="text-gray-200 leading-8 mb-6">
+              مجموعه‌ای از بهترین ابزارهای حرفه‌ای با قیمت‌های استثنایی
+              برای مدت محدود.
+            </p>
+
+            <a href="#" class="inline-flex items-center justify-center rounded-2xl bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 font-bold transition">
+              مشاهده محصولات
+            </a>
+          </div>
+        </div>
+
+        <div class="absolute top-5 left-5 z-20 w-24 h-24 rounded-full bg-[#171717]/90 text-white flex flex-col items-center justify-center shadow-xl">
+          <span class="text-xs text-gray-300">تا</span>
+          <span class="text-3xl font-black text-orange-500">50%</span>
+          <span class="text-xs text-gray-300">تخفیف</span>
+        </div>
+      </div>
+
+      <!-- Banner 2 -->
+      <div
+        class="relative min-h-[320px] rounded-[2rem] overflow-hidden shadow-lg bg-cover bg-center"
+        style="background-image: url('img/B5.png');"
+      >
+        <div class="absolute inset-0 bg-black/65"></div>
+
+        <div class="relative z-10 h-full flex items-center p-8 lg:p-10 text-white">
+          <div class="max-w-md mr-auto">
+            <span class="inline-flex items-center rounded-full bg-orange-500/15 text-orange-400 px-4 py-2 text-sm font-bold mb-5">
+              پیشنهاد حرفه‌ای
+            </span>
+
+            <h3 class="text-3xl lg:text-4xl font-black leading-tight mb-4">
+              ست کامل ابزار دستی
+              <span class="text-orange-500 block mt-2">برای کارهای فنی و صنعتی</span>
+            </h3>
+
+            <p class="text-gray-200 leading-8 mb-6">
+              ابزارهای بادوام و کاربردی برای پروژه‌های خانگی و حرفه‌ای،
+              همراه با تضمین کیفیت.
+            </p>
+
+            <a href="#" class="inline-flex items-center justify-center rounded-2xl bg-white text-[#111111] hover:bg-gray-100 px-6 py-3 font-bold transition">
+              خرید سریع
+            </a>
+          </div>
+        </div>
+
+        <div class="absolute top-5 left-5 z-20 w-24 h-24 rounded-full bg-[#171717]/90 text-white flex flex-col items-center justify-center shadow-xl">
+          <span class="text-xs text-gray-300">ارسال</span>
+          <span class="text-2xl font-black text-orange-500">رایگان</span>
+          <span class="text-xs text-gray-300">امروز</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- FOOTER -->
+    <footer class="mt-14 border-t border-white/10 bg-[#171717]">
+      <div class="container mx-auto px-4 py-12">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+          <div>
+            <h4 class="text-2xl font-black mb-6 flex items-center gap-2">
+              <i class="fa fa-link text-orange-500"></i>
+              دسترسی سریع
+            </h4>
+
+            <ul class="space-y-4 text-gray-300">
+              <li><a href="#" class="hover:text-orange-400 transition">صفحه اصلی</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">محصولات</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">پیشنهاد های ویژه</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">وبلاگ</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">درباره ما</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">تماس با ما</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-2xl font-black mb-6 flex items-center gap-2">
+              <i class="fa fa-headphones text-orange-500"></i>
+              خدمات مشتریان
+            </h4>
+
+            <ul class="space-y-4 text-gray-300">
+              <li><a href="#" class="hover:text-orange-400 transition">سوالات متداول</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">شرایط و قوانین</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">حریم خصوصی</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">روش های ارسال</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">بازگشت کالا</a></li>
+              <li><a href="#" class="hover:text-orange-400 transition">پیگیری سفارش</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-2xl font-black mb-6 flex items-center gap-2">
+              <i class="fa fa-phone text-orange-500"></i>
+              تماس با ما
+            </h4>
+
+            <ul class="space-y-4 text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fa fa-phone text-orange-500"></i>
+                <span>021-66712345</span>
+              </li>
+
+              <li class="flex items-center gap-3">
+                <i class="fa fa-mobile text-orange-500"></i>
+                <span>0912-1234567</span>
+              </li>
+
+              <li class="flex items-center gap-3">
+                <i class="fa fa-envelope text-orange-500"></i>
+                <span>info@abzarplus.com</span>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <i class="fa fa-map-marker text-orange-500 mt-1"></i>
+                <span>ساری, خیابان فرهنگ, روبه رو پانزده خرداد</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 pt-8 border-t border-white/10">
+
+          <div>
+            <h4 class="text-2xl font-black mb-6">نماد اعتماد</h4>
+
+            <div class="flex flex-wrap gap-4">
+              <div class="w-28 h-28 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center">
+                <img src="img/new_logo11.png" class="max-h-16 object-contain" alt="Enamad">
+              </div>
+
+              <div class="w-28 h-28 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center">
+                <img src="img/new_logo11.png" class="max-h-16 object-contain" alt="Samandehi">
+              </div>
+
+              <div class="w-28 h-28 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center">
+                <img src="img/new_logo11.png" class="max-h-16 object-contain" alt="Trust">
+              </div>
+            </div>
+          </div>
+
+          
+
+        <div class="mt-10 pt-6 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-5">
+          <div class="flex items-center gap-4 text-2xl">
+            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 transition">
+              <img src="img/icons8-whatsapp-96.png" width="70%">
+            </a>
+
+            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 transition">
+              <img src="img/icons8-instagram-96.png" width="70%">
+            </a>
+
+            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 transition">
+              <img src="img/icons8-telegram-96.png" width="70%">
+            </a>
+          </div>
+
+          <p class="text-gray-400 text-sm lg:text-base text-center">
+            تمامی حقوق این سایت متعلق به <span class="text-orange-500">ابزارپلاس</span> می باشد.
+          </p>
+        </div>
+
+      </div>
+    </footer>
+  </section>
+
+  <script>
+    // Countdown
+    (function () {
+      let totalSeconds = (2 * 24 * 60 * 60) + (14 * 60 * 60) + (37 * 60) + 19;
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      function updateCountdown() {
+        let remaining = totalSeconds;
+
+        const days = Math.floor(remaining / 86400);
+        remaining %= 86400;
+
+        const hours = Math.floor(remaining / 3600);
+        remaining %= 3600;
+
+        const minutes = Math.floor(remaining / 60);
+        const seconds = remaining % 60;
+
+        if (daysEl) daysEl.textContent = String(days).padStart(2, "0");
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
+        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, "0");
+        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, "0");
+
+        if (totalSeconds > 0) {
+          totalSeconds--;
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+
+    // Special Slider
+    (function () {
+      const slider = document.getElementById("specialSlider");
+      const prev = document.getElementById("specialPrev");
+      const next = document.getElementById("specialNext");
+
+      if (!slider || !prev || !next) return;
+
+      const scrollAmount = 320;
+
+      next.addEventListener("click", function () {
+        slider.scrollBy({
+          left: -scrollAmount,
+          behavior: "smooth"
+        });
+      });
+
+      prev.addEventListener("click", function () {
+        slider.scrollBy({
+          left: scrollAmount,
+          behavior: "smooth"
+        });
+      });
+    })();
+
+    // Hero Slider
+    const heroSlides = document.querySelectorAll(".hero-slide");
+    const heroDots = document.getElementById("hero-dots");
+    const heroPrev = document.getElementById("hero-prev");
+    const heroNext = document.getElementById("hero-next");
+    let currentHero = 0;
+    let heroInterval;
+
+    function renderHeroDots() {
+      if (!heroDots) return;
+
+      heroDots.innerHTML = "";
+
+      heroSlides.forEach((_, index) => {
+        const dot = document.createElement("button");
+
+        dot.className = index === currentHero
+          ? "w-8 h-2 rounded-full bg-orange-500 transition-all duration-300"
+          : "w-2 h-2 rounded-full bg-white/50 transition-all duration-300";
+
+        dot.addEventListener("click", () => {
+          showHeroSlide(index);
+          resetHeroInterval();
+        });
+
+        heroDots.appendChild(dot);
+      });
+    }
+
+    function showHeroSlide(index) {
+      heroSlides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+
+      currentHero = index;
+      renderHeroDots();
+    }
+
+    function nextHeroSlide() {
+      const next = (currentHero + 1) % heroSlides.length;
+      showHeroSlide(next);
+    }
+
+    function prevHeroSlide() {
+      const prev = (currentHero - 1 + heroSlides.length) % heroSlides.length;
+      showHeroSlide(prev);
+    }
+
+    function startHeroInterval() {
+      if (heroSlides.length > 0) {
+        heroInterval = setInterval(nextHeroSlide, 4000);
+      }
+    }
+
+    function resetHeroInterval() {
+      clearInterval(heroInterval);
+      startHeroInterval();
+    }
+
+    if (heroPrev && heroNext && heroSlides.length > 0) {
+      heroPrev.addEventListener("click", () => {
+        prevHeroSlide();
+        resetHeroInterval();
+      });
+
+      heroNext.addEventListener("click", () => {
+        nextHeroSlide();
+        resetHeroInterval();
+      });
+
+      showHeroSlide(0);
+      startHeroInterval();
+    }
+
+    // Product Scroller
+    const scroller = document.getElementById("product-scroller");
+    const scrollLeftBtn = document.getElementById("scroll-left");
+    const scrollRightBtn = document.getElementById("scroll-right");
+
+    if (scroller && scrollLeftBtn && scrollRightBtn) {
+      scrollLeftBtn.addEventListener("click", () => {
+        scroller.scrollBy({ left: -320, behavior: "smooth" });
+      });
+
+      scrollRightBtn.addEventListener("click", () => {
+        scroller.scrollBy({ left: 320, behavior: "smooth" });
+      });
+
+      let isDown = false;
+      let startX = 0;
+      let scrollStart = 0;
+
+      scroller.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX - scroller.offsetLeft;
+        scrollStart = scroller.scrollLeft;
+      });
+
+      scroller.addEventListener("mouseleave", () => {
+        isDown = false;
+      });
+
+      scroller.addEventListener("mouseup", () => {
+        isDown = false;
+      });
+
+      scroller.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+
+        e.preventDefault();
+
+        const x = e.pageX - scroller.offsetLeft;
+        const walk = (x - startX) * 1.5;
+
+        scroller.scrollLeft = scrollStart - walk;
+      });
+    }
+  </script>
+
+</body>
+</html>
