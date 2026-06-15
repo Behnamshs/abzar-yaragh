@@ -8,70 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/dist/font-face.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap');
-    * {
-      font-family: 'Vazirmatn', sans-serif;
-    }
-    body {
-      background-color: #171717;
-      scroll-behavior: smooth;
-    }
-
-    .bg-dark-header { background-color: #0f0f0f; }
-    .text-orange-primary { color: #f26522; }
-    .bg-orange-primary { background-color: #f26522; }
-
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    .product-scroller {
-      scroll-behavior: smooth;
-      cursor: grab;
-    }
-
-    .product-scroller:active {
-      cursor: grabbing;
-    }
-
-    .category-card {
-      transition: all 0.25s ease;
-    }
-
-    .category-card:hover {
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      transform: translateY(-3px);
-    }
-
-    .hero-slide {
-      opacity: 0;
-      transition: opacity 700ms ease-in-out;
-      pointer-events: none;
-      position: absolute;
-      inset: 0;
-    }
-
-    .hero-slide.active {
-      opacity: 1;
-      pointer-events: auto;
-      z-index: 2;
-    }
-
-    .hero-nav-edge {
-      background: rgba(255,255,255,0.18);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.25s ease;
-    }
-
-    .hero-nav-edge:hover {
-      background: rgba(242, 101, 34, 0.92);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="pb-20 lg:pb-0 bg-[#171717]">
 
@@ -79,17 +16,26 @@
     <!-- HEADER / MAIN WRAPPER -->
   <div class="bg-[#f8f9fa]">
     <!-- TOP BAR -->
-    <div class="bg-[#111111] text-white">
-      <div class="container mx-auto px-4 h-11 flex items-center justify-between text-sm">
-        <div class="flex items-center gap-4">
-          <span>ارسال سریع به سراسر کشور</span>
-        </div>
-        <div class="hidden md:flex items-center gap-5 text-white/80">
-          <a href="#" class="hover:text-white transition">پیگیری سفارش</a>
-          <a href="#" class="hover:text-white transition">پشتیبانی</a>
-        </div>
-      </div>
+<div class="bg-[#111111] text-white">
+  <div class="container mx-auto px-4 min-h-[44px] py-2 flex flex-col gap-2 sm:h-11 sm:py-0 sm:flex-row sm:items-center sm:justify-between text-sm">
+    <div class="flex items-center justify-center sm:justify-start gap-4 text-center sm:text-right">
+      <span>ارسال سریع به سراسر کشور</span>
     </div>
+
+    <!-- Mobile Links -->
+    <div class="flex items-center justify-center gap-4 text-white/80 sm:hidden">
+      <a href="#" class="hover:text-white transition whitespace-nowrap">پیگیری سفارش</a>
+      <a href="#" class="hover:text-white transition whitespace-nowrap">پشتیبانی</a>
+    </div>
+
+    <!-- Desktop Links -->
+    <div class="hidden sm:flex items-center gap-5 text-white/80">
+      <a href="#" class="hover:text-white transition">پیگیری سفارش</a>
+      <a href="#" class="hover:text-white transition">پشتیبانی</a>
+    </div>
+  </div>
+</div>
+
 
     <!-- HEADER -->
     <header class="bg-white shadow-sm sticky top-0 z-40">
@@ -141,78 +87,132 @@
       </div>
     </header>
 
-    <!-- HERO -->
-    <section class="container mx-auto px-4 my-6">
-      <div class="relative rounded-[2.5rem] overflow-hidden bg-black h-[300px] sm:h-[360px] lg:h-[470px] shadow-xl">
+<!-- HERO NEW -->
+<section class="container mx-auto px-4 my-6">
+  <div
+    id="hero"
+    class="hero relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] shadow-xl bg-neutral-900"
+    aria-label="اسلایدر هیرو"
+  >
+    <div id="hero-track" class="hero-track">
+      
+      <!-- Slide 1 -->
+      <article class="hero-slide">
+        <img
+          src="img/B1.png"
+          alt="بنر ابزار 1"
+          class="hero-img"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          draggable="false"
+        />
 
-        <div class="hero-slide active">
-          <img src="img/B1.png" alt="بنر ابزار 1" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/25 to-transparent"></div>
+        <div class="hero-overlay"></div>
 
-          <div class="absolute inset-y-0 right-0 flex items-center z-10">
-            <div class="px-6 sm:px-10 lg:px-14 max-w-xl text-white">
-              <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-                قدرت واقعی در دستان شما
-              </h2>
-              <p class="mt-3 text-sm sm:text-base lg:text-lg text-white/90 leading-7">
-                مجموعه‌ای کامل از ابزارهای حرفه‌ای برای پروژه‌های خانگی و صنعتی.
-              </p>
-              <button class="mt-6 rounded-2xl bg-orange-primary hover:opacity-90 px-6 py-3 font-bold text-white transition">
-                مشاهده محصولات
-              </button>
-            </div>
+        <div class="hero-content-wrap">
+          <div class="hero-content">
+            <h2 class="hero-title">
+              قدرت واقعی در دستان شما
+            </h2>
+
+            <p class="hero-desc">
+              مجموعه‌ای کامل از ابزارهای حرفه‌ای برای پروژه‌های خانگی و صنعتی.
+            </p>
+
+            <button class="hero-btn bg-orange-primary text-white hover:opacity-90">
+              مشاهده محصولات
+            </button>
           </div>
         </div>
+      </article>
 
-        <div class="hero-slide">
-          <img src="img/B2.png" alt="بنر ابزار 2" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/25 to-transparent"></div>
+      <!-- Slide 2 -->
+      <article class="hero-slide">
+        <img
+          src="img/B2.png"
+          alt="بنر ابزار 2"
+          class="hero-img"
+          loading="lazy"
+          decoding="async"
+          draggable="false"
+        />
 
-          <div class="absolute inset-y-0 right-0 flex items-center z-10">
-            <div class="px-6 sm:px-10 lg:px-14 max-w-xl text-white">
-              <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-                تخفیف ویژه ابزارهای برقی
-              </h2>
-              <p class="mt-3 text-sm sm:text-base lg:text-lg text-white/90 leading-7">
-                بهترین برندها با قیمت رقابتی و ضمانت اصالت کالا.
-              </p>
-              <button class="mt-6 rounded-2xl bg-white text-slate-900 hover:bg-slate-100 px-6 py-3 font-bold transition">
-                خرید ویژه
-              </button>
-            </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content-wrap">
+          <div class="hero-content">
+            <h2 class="hero-title">
+              تخفیف ویژه ابزارهای برقی
+            </h2>
+
+            <p class="hero-desc">
+              بهترین برندها با قیمت رقابتی و ضمانت اصالت کالا.
+            </p>
+
+            <button class="hero-btn bg-white text-slate-900 hover:bg-slate-100">
+              خرید ویژه
+            </button>
           </div>
         </div>
+      </article>
 
-        <div class="hero-slide">
-          <img src="img/B3.png" alt="بنر ابزار 3" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/25 to-transparent"></div>
+      <!-- Slide 3 -->
+      <article class="hero-slide">
+        <img
+          src="img/B3.png"
+          alt="بنر ابزار 3"
+          class="hero-img"
+          loading="lazy"
+          decoding="async"
+          draggable="false"
+        />
 
-          <div class="absolute inset-y-0 right-0 flex items-center z-10">
-            <div class="px-6 sm:px-10 lg:px-14 max-w-xl text-white">
-              <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-                ارسال سریع به سراسر کشور
-              </h2>
-              <p class="mt-3 text-sm sm:text-base lg:text-lg text-white/90 leading-7">
-                سفارش خود را آنلاین ثبت کنید و سریع تحویل بگیرید.
-              </p>
-              <button class="mt-6 rounded-2xl bg-amber-400 text-slate-900 hover:bg-amber-300 px-6 py-3 font-bold transition">
-                شروع خرید
-              </button>
-            </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content-wrap">
+          <div class="hero-content">
+            <h2 class="hero-title">
+              ارسال سریع به سراسر کشور
+            </h2>
+
+            <p class="hero-desc">
+              سفارش خود را آنلاین ثبت کنید و سریع تحویل بگیرید.
+            </p>
+
+            <button class="hero-btn bg-amber-400 text-slate-900 hover:bg-amber-300">
+              شروع خرید
+            </button>
           </div>
         </div>
+      </article>
 
-        <button id="hero-prev" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 h-20 sm:h-28 lg:h-28 w-8 sm:w-14 lg:w-12 rounded-r-2xl hero-nav-edge border border-white/20 text-white flex items-center justify-center">
-          <i class="fa fa-chevron-left text-lg"></i>
-        </button>
+    </div>
 
-        <button id="hero-next" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 h-20 sm:h-28 lg:h-28 w-8 sm:w-14 lg:w-12 rounded-l-2xl hero-nav-edge border border-white/20 text-white flex items-center justify-center">
-          <i class="fa fa-chevron-right text-lg"></i>
-        </button>
+    <!-- Desktop Arrows -->
+    <button
+      id="hero-prev"
+      class="hero-arrow hero-arrow-left"
+      type="button"
+      aria-label="اسلاید قبلی"
+    >
+      <i class="fa fa-chevron-left"></i>
+    </button>
 
-        <div id="hero-dots" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-20"></div>
-      </div>
-    </section>
+    <button
+      id="hero-next"
+      class="hero-arrow hero-arrow-right"
+      type="button"
+      aria-label="اسلاید بعدی"
+    >
+      <i class="fa fa-chevron-right"></i>
+    </button>
+
+    <!-- Dots -->
+    <div id="hero-dots" class="hero-dots" aria-label="نقطه‌های اسلایدر"></div>
+  </div>
+</section>
+
 
     <!-- CATEGORIES -->
     <section class="container mx-auto px-4 py-8 overflow-x-auto hide-scrollbar">
@@ -885,185 +885,7 @@
     </footer>
   </section>
 
-  <script>
-    // Countdown
-    (function () {
-      let totalSeconds = (2 * 24 * 60 * 60) + (14 * 60 * 60) + (37 * 60) + 19;
-
-      const daysEl = document.getElementById("days");
-      const hoursEl = document.getElementById("hours");
-      const minutesEl = document.getElementById("minutes");
-      const secondsEl = document.getElementById("seconds");
-
-      function updateCountdown() {
-        let remaining = totalSeconds;
-
-        const days = Math.floor(remaining / 86400);
-        remaining %= 86400;
-
-        const hours = Math.floor(remaining / 3600);
-        remaining %= 3600;
-
-        const minutes = Math.floor(remaining / 60);
-        const seconds = remaining % 60;
-
-        if (daysEl) daysEl.textContent = String(days).padStart(2, "0");
-        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
-        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, "0");
-        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, "0");
-
-        if (totalSeconds > 0) {
-          totalSeconds--;
-        }
-      }
-
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    })();
-
-    // Special Slider
-    (function () {
-      const slider = document.getElementById("specialSlider");
-      const prev = document.getElementById("specialPrev");
-      const next = document.getElementById("specialNext");
-
-      if (!slider || !prev || !next) return;
-
-      const scrollAmount = 320;
-
-      next.addEventListener("click", function () {
-        slider.scrollBy({
-          left: -scrollAmount,
-          behavior: "smooth"
-        });
-      });
-
-      prev.addEventListener("click", function () {
-        slider.scrollBy({
-          left: scrollAmount,
-          behavior: "smooth"
-        });
-      });
-    })();
-
-    // Hero Slider
-    const heroSlides = document.querySelectorAll(".hero-slide");
-    const heroDots = document.getElementById("hero-dots");
-    const heroPrev = document.getElementById("hero-prev");
-    const heroNext = document.getElementById("hero-next");
-    let currentHero = 0;
-    let heroInterval;
-
-    function renderHeroDots() {
-      if (!heroDots) return;
-
-      heroDots.innerHTML = "";
-
-      heroSlides.forEach((_, index) => {
-        const dot = document.createElement("button");
-
-        dot.className = index === currentHero
-          ? "w-8 h-2 rounded-full bg-orange-500 transition-all duration-300"
-          : "w-2 h-2 rounded-full bg-white/50 transition-all duration-300";
-
-        dot.addEventListener("click", () => {
-          showHeroSlide(index);
-          resetHeroInterval();
-        });
-
-        heroDots.appendChild(dot);
-      });
-    }
-
-    function showHeroSlide(index) {
-      heroSlides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-      });
-
-      currentHero = index;
-      renderHeroDots();
-    }
-
-    function nextHeroSlide() {
-      const next = (currentHero + 1) % heroSlides.length;
-      showHeroSlide(next);
-    }
-
-    function prevHeroSlide() {
-      const prev = (currentHero - 1 + heroSlides.length) % heroSlides.length;
-      showHeroSlide(prev);
-    }
-
-    function startHeroInterval() {
-      if (heroSlides.length > 0) {
-        heroInterval = setInterval(nextHeroSlide, 4000);
-      }
-    }
-
-    function resetHeroInterval() {
-      clearInterval(heroInterval);
-      startHeroInterval();
-    }
-
-    if (heroPrev && heroNext && heroSlides.length > 0) {
-      heroPrev.addEventListener("click", () => {
-        prevHeroSlide();
-        resetHeroInterval();
-      });
-
-      heroNext.addEventListener("click", () => {
-        nextHeroSlide();
-        resetHeroInterval();
-      });
-
-      showHeroSlide(0);
-      startHeroInterval();
-    }
-
-    // Product Scroller
-    const scroller = document.getElementById("product-scroller");
-    const scrollLeftBtn = document.getElementById("scroll-left");
-    const scrollRightBtn = document.getElementById("scroll-right");
-
-    if (scroller && scrollLeftBtn && scrollRightBtn) {
-      scrollLeftBtn.addEventListener("click", () => {
-        scroller.scrollBy({ left: -320, behavior: "smooth" });
-      });
-
-      scrollRightBtn.addEventListener("click", () => {
-        scroller.scrollBy({ left: 320, behavior: "smooth" });
-      });
-
-      let isDown = false;
-      let startX = 0;
-      let scrollStart = 0;
-
-      scroller.addEventListener("mousedown", (e) => {
-        isDown = true;
-        startX = e.pageX - scroller.offsetLeft;
-        scrollStart = scroller.scrollLeft;
-      });
-
-      scroller.addEventListener("mouseleave", () => {
-        isDown = false;
-      });
-
-      scroller.addEventListener("mouseup", () => {
-        isDown = false;
-      });
-
-      scroller.addEventListener("mousemove", (e) => {
-        if (!isDown) return;
-
-        e.preventDefault();
-
-        const x = e.pageX - scroller.offsetLeft;
-        const walk = (x - startX) * 1.5;
-
-        scroller.scrollLeft = scrollStart - walk;
-      });
-    }
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
