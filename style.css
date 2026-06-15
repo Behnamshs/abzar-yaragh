@@ -1,289 +1,212 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap');
+// Countdown
+  (function () {
+    let totalSeconds = (2 * 24 * 60 * 60) + (14 * 60 * 60) + (37 * 60) + 19;
 
-* {
-  font-family: 'Vazirmatn', sans-serif;
-}
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
 
-body {
-  background-color: #171717;
-  scroll-behavior: smooth;
-}
+    function updateCountdown() {
+      let remaining = totalSeconds;
 
-.text-orange-primary {
-  color: #f26522;
-}
+      const days = Math.floor(remaining / 86400);
+      remaining %= 86400;
 
-.bg-orange-primary {
-  background-color: #f26522;
-}
+      const hours = Math.floor(remaining / 3600);
+      remaining %= 3600;
 
-/* HERO */
-.hero {
-  height: 250px;
-}
+      const minutes = Math.floor(remaining / 60);
+      const seconds = remaining % 60;
 
-/* برای اینکه اسکرول افقی در RTL به مشکل نخورد */
-.hero-track {
-  direction: ltr;
-  height: 100%;
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
+      if (daysEl) daysEl.textContent = String(days).padStart(2, "0");
+      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
+      if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, "0");
+      if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, "0");
 
-.hero-track::-webkit-scrollbar {
-  display: none;
-}
+      if (totalSeconds > 0) totalSeconds--;
+    }
 
-.hero-slide {
-  position: relative;
-  direction: rtl;
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  })();
 
-.hero-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
+  // Special Slider
+  (function () {
+    const slider = document.getElementById("specialSlider");
+    const prev = document.getElementById("specialPrev");
+    const next = document.getElementById("specialNext");
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.72),
-    rgba(0, 0, 0, 0.35),
-    rgba(0, 0, 0, 0.05)
-  );
-  z-index: 1;
-}
+    if (!slider || !prev || !next) return;
 
-.hero-content-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
+    const scrollAmount = 320;
 
-.hero-content {
-  color: #fff;
-  padding: 1.25rem 1rem 4rem;
-  max-width: 270px;
-}
+    next.addEventListener("click", function () {
+      slider.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth"
+      });
+    });
 
-.hero-title {
-  font-size: 1.125rem;
-  line-height: 1.45;
-  font-weight: 900;
-}
+    prev.addEventListener("click", function () {
+      slider.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth"
+      });
+    });
+  })();
 
-.hero-desc {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  line-height: 1.9;
-  color: rgba(255, 255, 255, 0.9);
-}
+  // Product Scroller
+  (function () {
+    const scroller = document.getElementById("product-scroller");
+    const scrollLeftBtn = document.getElementById("scroll-left");
+    const scrollRightBtn = document.getElementById("scroll-right");
 
-.hero-btn {
-  margin-top: 0.75rem;
-  border: 0;
-  border-radius: 0.9rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
+    if (!scroller || !scrollLeftBtn || !scrollRightBtn) return;
 
-.hero-btn:active {
-  transform: scale(0.97);
-}
+    scrollLeftBtn.addEventListener("click", function () {
+      scroller.scrollBy({ left: -320, behavior: "smooth" });
+    });
 
-/* Arrows فقط دسکتاپ */
-.hero-arrow {
-  display: none;
-  position: absolute;
-  top: 50%;
-  z-index: 5;
-  width: 44px;
-  height: 88px;
-  transform: translateY(-50%);
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
+    scrollRightBtn.addEventListener("click", function () {
+      scroller.scrollBy({ left: 320, behavior: "smooth" });
+    });
 
-.hero-arrow:hover {
-  background: rgba(242, 101, 34, 0.94);
-}
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
 
-.hero-arrow-left {
-  left: 0;
-  border-radius: 0 1rem 1rem 0;
-}
+    scroller.addEventListener("mousedown", function (e) {
+      isDown = true;
+      startX = e.pageX - scroller.offsetLeft;
+      scrollStart = scroller.scrollLeft;
+    });
 
-.hero-arrow-right {
-  right: 0;
-  border-radius: 1rem 0 0 1rem;
-}
+    scroller.addEventListener("mouseleave", function () {
+      isDown = false;
+    });
 
-/* Dots */
-.hero-dots {
-  position: absolute;
-  z-index: 6;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  direction: ltr;
-}
+    scroller.addEventListener("mouseup", function () {
+      isDown = false;
+    });
 
-.hero-dot {
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
+    scroller.addEventListener("mousemove", function (e) {
+      if (!isDown) return;
 
-.hero-dot.active {
-  width: 28px;
-  background: #f97316;
-}
+      e.preventDefault();
+      const x = e.pageX - scroller.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      scroller.scrollLeft = scrollStart - walk;
+    });
+  })();
 
-/* Small Mobile */
-@media (max-width: 480px) {
-  .hero {
-    height: 175px;
+  // Hero Slider
+  (function () {
+  const hero = document.getElementById("hero");
+  const track = document.getElementById("hero-track");
+  const prevBtn = document.getElementById("hero-prev");
+  const nextBtn = document.getElementById("hero-next");
+  const dotsWrap = document.getElementById("hero-dots");
+
+  if (!hero || !track || !dotsWrap) return;
+
+  const slides = Array.from(track.querySelectorAll(".hero-slide"));
+  const total = slides.length;
+
+  if (!total) return;
+
+  let current = 0;
+  let scrollTimer = null;
+
+  function buildDots() {
+    dotsWrap.innerHTML = "";
+
+    slides.forEach(function (_, index) {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "hero-dot";
+      dot.setAttribute("aria-label", "رفتن به اسلاید " + (index + 1));
+
+      dot.addEventListener("click", function () {
+        goTo(index);
+      });
+
+      dotsWrap.appendChild(dot);
+    });
   }
 
-  .hero-img {
-    object-position: 70% center;
+  function updateDots() {
+    const dots = dotsWrap.querySelectorAll(".hero-dot");
+
+    dots.forEach(function (dot, index) {
+      const isActive = index === current;
+      dot.classList.toggle("active", isActive);
+      dot.setAttribute("aria-current", isActive ? "true" : "false");
+    });
   }
 
-  .hero-content {
-    max-width: 255px;
-    padding: 1rem 0.9rem 3.6rem;
+  function goTo(index) {
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+
+    current = index;
+
+    slides[current].scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start"
+    });
+
+    updateDots();
   }
 
-  .hero-title {
-    font-size: 1rem;
+  function detectCurrentSlide() {
+    const trackRect = track.getBoundingClientRect();
+    const trackLeft = trackRect.left;
+
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    slides.forEach(function (slide, index) {
+      const slideRect = slide.getBoundingClientRect();
+      const distance = Math.abs(slideRect.left - trackLeft);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    if (closestIndex !== current) {
+      current = closestIndex;
+      updateDots();
+    }
   }
 
-  .hero-desc {
-    font-size: 0.72rem;
-    line-height: 1.8;
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function () {
+      goTo(current - 1);
+    });
   }
 
-  .hero-btn {
-    font-size: 0.78rem;
-    padding: 0.45rem 0.9rem;
-  }
-}
-
-/* Tablet */
-@media (min-width: 640px) {
-  .hero {
-    height: 360px;
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function () {
+      goTo(current + 1);
+    });
   }
 
-  .hero-content-wrap {
-    align-items: center;
-  }
+  track.addEventListener("scroll", function () {
+    clearTimeout(scrollTimer);
 
-  .hero-content {
-    max-width: 36rem;
-    padding: 0 2.5rem;
-  }
+    scrollTimer = setTimeout(function () {
+      detectCurrentSlide();
+    }, 80);
+  }, { passive: true });
 
-  .hero-title {
-    font-size: 2.25rem;
-    line-height: 1.25;
-  }
+  window.addEventListener("resize", function () {
+    goTo(current);
+  });
 
-  .hero-desc {
-    margin-top: 0.75rem;
-    font-size: 1rem;
-    line-height: 1.8;
-  }
-
-  .hero-btn {
-    margin-top: 1.5rem;
-    border-radius: 1rem;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  .hero-arrow {
-    display: flex;
-  }
-
-  .hero-dots {
-    left: 50%;
-    bottom: 1.25rem;
-    transform: translateX(-50%);
-  }
-
-  .hero-dot {
-    width: 12px;
-    height: 12px;
-  }
-
-  .hero-dot.active {
-    width: 34px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  .hero {
-    height: 470px;
-  }
-
-  .hero-content {
-    padding: 0 3.5rem;
-    max-width: 42rem;
-  }
-
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-desc {
-    font-size: 1.125rem;
-  }
-
-  .hero-arrow {
-    width: 52px;
-    height: 100px;
-  }
-}
+  buildDots();
+  updateDots();
+})();
